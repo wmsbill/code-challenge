@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event</title>
+</head>
+<body>
+    <button id="biriba">biriba</button>
+    <script>
+        // const obj = {
+        //     a: 1,
+        //     clickHandler() {
+        //         console.log(this.a);
+        //     }
+        // }
+
+        class Foo {
+            a = 1;
+
+            x = () => {
+                console.info(this.a);
+            }
+
+            bar(){ }
+            baz(){ }
+        }
+        const obj = new Foo();
+
+        const button = document.getElementById('biriba');
+        button.addEventListener('click', obj.x);
+    </script>
+</body>
+</html>

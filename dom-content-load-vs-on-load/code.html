@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        What is the difference between window.onload
+        and document.DOMContentLoaded,
+        why would you use one over the other?
+    -->
+    <meta charset="UTF-8">
+    <title>Difference between Dom content load vs on load</title>
+
+    <script>
+        let styles = [
+            'color: red; font-weight: bold;',
+            'color: black; font-weight: bold;'
+        ];
+
+        window.addEventListener(
+            'DOMContentLoaded',
+            e => console.info(`
+%c
+DOM Ready:
+%c
+This means that all HTML file string
+is downloaded and parsed. The DOM object is available
+to be manipulated safely.
+
+The event target is ${e.target.nodeName}
+`, ...styles)
+        );
+        window.addEventListener(
+            'load',
+            e => console.info(`
+%c
+Load event:
+%c
+This means that all resources were loaded
+This event happens later than the DOMContentLoaded,
+which doesn't wait for the resources to be loaded.
+Use this event mainly when you want to defer tasks that
+are not crucial to the page UX
+`, ...styles)
+        );
+        window.addEventListener(
+            'beforeunload',
+            e => console.info(`
+%c
+Beforeunload Event:
+%c
+This event happens before the page and its resources are
+about to be unloaded. The event is cancelable and the resources
+are still visible.
+`, ...styles)
+        );
+        window.addEventListener(
+            'unload',
+            e => {
+                console.info(`
+%c
+Unload event:
+%c
+This event happens after the page and its resources are
+unloaded and not visible or interactive.
+This event is not cancelable and any exception thrown will
+be ignored.
+`, ...styles);
+            }
+        );
+    </script>
+</head>
+<body>
+
+</body>
+</html>
